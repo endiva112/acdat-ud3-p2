@@ -23,15 +23,27 @@ public class Definition {
 
     public void crearTablaTareas() {
         try (Statement stmt = connection.createStatement()) {
-            stmt.executeUpdate("CREATE TABLE IF NOT EXISTS tareas(\n" +
-                    "    id SERIAL PRIMARY KEY,\n" +
-                    "    titulo VARCHAR(150) NOT NULL,\n" +
-                    "    descripcion TEXT,\n" +
-                    "    completada BOOLEAN NOT NULL DEFAULT FALSE,\n" +
-                    "    prioridad SMALLINT CHECK (prioridad BETWEEN 1 AND 5)\n" +
-                    ");");
+            stmt.executeUpdate(
+                    "CREATE TABLE IF NOT EXISTS tareas(\n" +
+                            "    id SERIAL PRIMARY KEY,\n" +
+                            "    titulo VARCHAR(150) NOT NULL,\n" +
+                            "    descripcion TEXT,\n" +
+                            "    completada BOOLEAN NOT NULL DEFAULT FALSE,\n" +
+                            "    fechaCreacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP\n" +
+                            ");"
+            );
+            System.out.println("Tabla 'tareas' creada con éxito.");
         } catch (SQLException e) {
-            System.err.println("Error: " + e.getMessage());
+            System.err.println("Error al crear la tabla: " + e.getMessage());
+        }
+    }
+
+    public void eliminarTablaTareas() {
+        try (Statement stmt = connection.createStatement()) {
+            stmt.executeUpdate("DROP TABLE IF EXISTS tareas;");
+            System.out.println("Tabla 'tareas' eliminada.");
+        } catch (SQLException e) {
+            System.err.println("Error al eliminar la tabla: " + e.getMessage());
         }
     }
 }

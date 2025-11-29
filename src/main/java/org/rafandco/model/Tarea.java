@@ -78,10 +78,10 @@ public class Tarea {
     //region toString
     @Override
     public String toString() {
-        return "- Tara nº" + id + "\n" +
-                titulo + ">>>" + descripcion + "\n" +
-                "Completada: " + (completada ? "Sí" : "No") + "\n" +
-                "Fecha de creación: " + fechaCreacion + "\n";
+        return  "o Tarea " + id + " > " + titulo + "\n" +
+                "\t↳ " + descripcion + "\n" +
+                "\tCompletada: " + (completada ? "Sí" : "No") + "\n" +
+                "\tFecha de creación: " + fechaCreacion + "\n";
     }
     //endregion
 }
